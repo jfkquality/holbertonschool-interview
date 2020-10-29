@@ -14,8 +14,6 @@ def printSolution(board):
            for iy, i in enumerate(row) if i == 1])
 
 
-
-
 def isSafe(board, row, col, n):
     """ issafe function """
 
@@ -73,22 +71,22 @@ def solveNQ(args):
 
     if len(args) < 2:
         print("Usage: nqueens N")
-        exit (1)
+        exit(1)
 
     n = args[1]
 
     try:
         n = int(argv[1])
-    except:
+    except Exception:
         n = argv[1]
 
     if not isinstance(n, int):
         print("N must be a number")
-        exit (1)
+        exit(1)
 
     if n < 4:
         print("N must be at least 4")
-        exit (1)
+        exit(1)
 
     board = [[0 for j in range(n)]
              for i in range(n)]
@@ -98,6 +96,7 @@ def solveNQ(args):
         print("Solution does not exist")
         return
     return
+
 
 # Driver Code
 solveNQ(argv)
