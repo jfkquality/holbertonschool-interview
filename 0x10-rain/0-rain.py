@@ -1,10 +1,7 @@
 #!/usr/bin/python3
 """ 0x10. Rain """
 
-from typing import List
-
-
-def rain(walls: List[int]) -> int:
+def rain(walls):
     """ 0. Rain """
     if len(walls) == 0:
         return 0
