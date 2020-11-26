@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ 0x10. Rain """
 
+
 def rain(walls):
     """ 0. Rain """
     if not walls or len(walls) <= 2:
