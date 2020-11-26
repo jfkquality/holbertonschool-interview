@@ -3,7 +3,7 @@
 
 def rain(walls):
     """ 0. Rain """
-    if len(walls) == 0:
+    if not walls or len(walls) <= 2:
         return 0
 
     water = 0
