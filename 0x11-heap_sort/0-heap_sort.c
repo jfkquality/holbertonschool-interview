@@ -69,11 +69,11 @@ void heapify(int *a, size_t count)
 	while (start > 0)
 	{
 		siftDown(a, start, count - 1);
-		/* print_array(a, count); */
+		print_array(a, count);
 		start--;
 	}
 	siftDown(a, start, count - 1);
-	/* print_array(a, count); */
+	print_array(a, count);
 }
 
 
@@ -91,18 +91,18 @@ void heap_sort(int *array, size_t size)
 	size_t end;
 
 	if (!array || !size)
-		return:
+		return;
 
 	heapify(array, size);
-	/* print_array(array, size); */
+	print_array(array, size);
 	end = size - 1;
 
 	while (end > 0)
 	{
 		swap(array, end, 0);
-		/* print_array(array, size); */
+		print_array(array, size);
 		end--;
 		siftDown(array, 0, end);
-		/* print_array(array, size); */
+		print_array(array, size);
 	}
 }
