@@ -3,7 +3,6 @@
 /**
  * swap - swap array indices
  *
- * @arr: array
  * @a: first index to swap
  * @b: second index to swap
  *
@@ -31,6 +30,8 @@ void swap(int *a, int *b)  /* , int a, int b) */
  * @a: array
  * @start: starting index of array
  * @end: ending index of array
+ * @arr: original array to allow print_array()
+ * @size: original size to all print_array()
  *
  * Return: Nothing
  */
