@@ -97,7 +97,7 @@ void heap_sort(int *array, size_t size)
 
 	size_t end;
 
-	if (!array || !size)
+	if (!array || !size || size == 1)
 		return;
 
 	heapify(array, size);
