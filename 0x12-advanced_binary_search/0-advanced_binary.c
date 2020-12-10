@@ -1,54 +1,52 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "search_algos.h"
 
 /**
- * advanced_binary - find first occuurence of value w binary search recursion.
- * @array: pointer to the first element array to traverse
- * @size: is the number of elements in array
- * @value: is the value to search for
- * Return: first index where value is located
+ * advanced_binary - return first occurence of value
+ * @array: array pointer
+ * @size: # of elements in array
+ * @value: value to search for
+ *
+ * Return: first idx where value found
  */
-
 int advanced_binary(int *array, size_t size, int value)
 {
-	size_t m, x;
-	signed int found, left;
+	size_t mid;
+	int i, found = -1;
 
-	left = 1;
-
-	if (size == 0)
-		return (-1);
 	printf("Searching in array: ");
-	for (x = 0; x < size - 1; x++)
-		printf("%d, ", array[x]);
-	printf("%d\n", array[x]);
-	if (size % 2 == 0)
-		m  = (size - 1) / 2;
-	else
-		m = size / 2;
-	if (array[m] == value)
+	for (i = 0; i < (int)size; i++)
 	{
-		if (left && m > 0)
-
-			found = advanced_binary(array, m + 1, value);
-
-		else
-			found = m;
+		if (i != 0)
+			printf(",");
+		printf(" %d", *(array + i));
 	}
-	else if (array[m] < value)
-	{
-		found = advanced_binary(array + m + 1, size - m - 1, value);
+	printf("\n");
 
-		if (found != (-1))
+	if (!array || size == 0)
+		return (-1);
+
+	mid = size / 2;
+
+	if (value == *(array + mid))
+		/* found++; */
+		return (*(array + mid));
+		/* /\* return (*(array + mid)); *\/ */
+
+	if (mid > 0)
+	{
+		if (value < *(array + mid))  /* Go left */
 		{
-			left = 0;
-			found += m + 1;
+			found = advanced_binary(array, mid, value);
 		}
-	}
-	else
-	{
-		left = 1;
-		found = advanced_binary(array, m + 1, value);
+		else /* Go right */
+		{
+			if (size % 2 != 0)
+				found = advanced_binary(array + mid + 1, mid, value);
+			else
+				found = advanced_binary(array + mid, mid, value);
+		}
 	}
 	return (found);
 }
