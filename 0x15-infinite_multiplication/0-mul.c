@@ -1,4 +1,4 @@
-include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include "holberton.h"
 
@@ -35,7 +35,7 @@ void mul(unsigned long n1, unsigned long n2)
 	unsigned long res;
 
 	res = n1 * n2;
-	printf("%lu\n", res);
+	/* printf("%lu\n", res); */
 	printnum(res);
 	_putchar('\n');
 
