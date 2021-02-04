@@ -36,6 +36,9 @@ listint_t *find_listint_loop(listint_t *head)
 	if (head == NULL)
 		return (NULL);
 
+	if (head == head->next)
+		return (head);
+
 	while (slow->next)
 	{
 		slow = slow->next;
