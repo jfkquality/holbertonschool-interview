@@ -130,7 +130,7 @@ int heap_extract(heap_t **root)
 	/* increase level counter for each zleft child found */
 	/* save last parent node (i.e. the penultimate row/leve)? */
 
-	int nodes, levels, extracted;
+	int extracted; /* nodes, levels; */
 	heap_t *last;
 
 
@@ -141,8 +141,8 @@ int heap_extract(heap_t **root)
 
 	last = get_last_node(*root);
 
-	levels = get_height(*root);
-	nodes = get_size(*root);
+	/* levels = get_height(*root); */
+	/* nodes = get_size(*root); */
 	/* printf("HEIGHT %d. SIZE: %d. LAST VALUE: %d\n", levels, nodes, last->n); */
 
 	if (last == *root) /* if one node tree */
