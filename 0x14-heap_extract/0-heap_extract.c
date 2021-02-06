@@ -143,7 +143,7 @@ int heap_extract(heap_t **root)
 
 	levels = get_height(*root);
 	nodes = get_size(*root);
-	printf("HEIGHT %d. SIZE: %d. LAST VALUE: %d\n", levels, nodes, last->n);
+	/* printf("HEIGHT %d. SIZE: %d. LAST VALUE: %d\n", levels, nodes, last->n); */
 
 	if (last == *root) /* if one node tree */
 	{
