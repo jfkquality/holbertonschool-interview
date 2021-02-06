@@ -1,19 +1,19 @@
 #include "binary_trees.h"
 
-/**
- * swap - swap nodes
- *
- * @node1: first node to swap
- * @node2: second node to swap
- *
- * Return: Nothing
- */
-void swap(heap_t *node1, heap_t *node2)
-{
-	node1->n = node1->n ^ node2->n;
-	node2->n = node1->n ^ node2->n;
-	node1->n = node1->n ^ node2->n;
-}
+/* /\** */
+/*  * swap - swap nodes */
+/*  * */
+/*  * @node1: first node to swap */
+/*  * @node2: second node to swap */
+/*  * */
+/*  * Return: Nothing */
+/*  *\/ */
+/* void swap(heap_t *node1, heap_t *node2) */
+/* { */
+/* 	node1->n = node1->n ^ node2->n; */
+/* 	node2->n = node1->n ^ node2->n; */
+/* 	node1->n = node1->n ^ node2->n; */
+/* } */
 
 /**
  * get_height - Get number of levels of heap
@@ -102,7 +102,10 @@ void sift_down(heap_t *node)
 	if (max && max->n > node->n)
 	{
 		/* printf("MAX %d, NODE %d, BEFORE SWAP: \n", max->n, node->n); */
-		swap(max, node);
+		/* swap(max, node); */
+		max->n = max->n ^ node->n;
+		node->n = max->n ^ node->n;
+		max->n = max->n ^ node->n;
 		/* printf("MAX %d, NODE %d, AFTER SWAP: \n", max->n, node->n); */
 		sift_down(max);
 	}
