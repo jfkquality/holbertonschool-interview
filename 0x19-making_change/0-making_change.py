@@ -1,6 +1,7 @@
 #!usr/bin/python3
 import sys
 
+
 # m is size of coins array (number of
 # different coins)
 def minCoins(coins, m, val):
@@ -25,8 +26,7 @@ def minCoins(coins, m, val):
         for j in range(m):
             if (coins[j] <= i):
                 sub_res = table[i - coins[j]]
-                if (sub_res != sys.maxsize and
-                    sub_res + 1 < table[i]):
+                if (sub_res != sys.maxsize and sub_res + 1 < table[i]):
                     table[i] = sub_res + 1
 
     if table[val] == sys.maxsize:
@@ -51,6 +51,7 @@ def makeChange(coins, total):
     #         return 1
 
     #     try:
-    #         return int(min([total / coin for coin in coins if  (total % coin == 0)]))
+    #         return int(min([total / coin for coin in coins
+    # if (total % coin == 0)]))
     #     except:
     #         return
