@@ -1,11 +1,16 @@
 #!usr/bin/python3
+"""
+0. Change comes from within
+ determine the fewest number of coins needed to meet a given amount
+"""
+
 import sys
 
 
 # m is size of coins array (number of
 # different coins)
 def minCoins(coins, m, val):
-
+    """ determine the fewest number of coins needed to meet a given amount. """
     # table[i] will be storing the minimum
     # number of coins required for i value.
     # So table[V] will have result
@@ -36,22 +41,5 @@ def minCoins(coins, m, val):
 
 
 def makeChange(coins, total):
+    """ determine the fewest number of coins needed to meet a given amount. """
     return minCoins(coins, len(coins), total)
-    # if total <= 0:
-    #     return 0
-
-    # coins = [coin for coin in coins if coin <= total]
-    # print(coins, total)
-
-    # if len(coins) > 0:
-    #     if all(coin % 2 == 0 for coin in coins) and total % 2 > 0:
-    #         return -1
-
-    #     if any(coin == total for coin in coins):
-    #         return 1
-
-    #     try:
-    #         return int(min([total / coin for coin in coins
-    # if (total % coin == 0)]))
-    #     except:
-    #         return
