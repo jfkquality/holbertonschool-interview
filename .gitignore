@@ -1,7 +1,10 @@
 *~
-*#
-*jfk*.*
+*#*
+*jfk*
+*will*
+*gary*
 **__pycache__/
-*will*.*
-*.pas
-package*.json
+.mypy_cache/
+node_modules/
+redis*/
+*.gz

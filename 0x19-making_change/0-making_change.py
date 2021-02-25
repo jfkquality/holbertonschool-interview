@@ -13,44 +13,22 @@ def makeChange(coins, total):
         return -1
 
     coinsList = sorted(coins, reverse=True)
-    # print(coins, total)
-    # print(sorted_c, total)
-    # sorted_c = sorted_c[::-1]
-
     count = 0
     num = 0
-    coinIdx = 0
-    running = total
     temp = total
-    lastIdx = len(coins) -1
+    lastIdx = len(coins) - 1
 
-    # for coin in coinsList:
-    while coinIdx < len(coinsList):
-        num = total // coinsList[coinIdx]
+    for coinIdx, coinVal in enumerate(coinsList):
+        num = total // coinVal
         count += num
-        # total -= coinsList[coinIdx] * num
-        temp -= coinsList[coinIdx] * num
-        # print("first temp ", temp)
+        temp -= coinVal * num
 
         if coinIdx == lastIdx - 1 and temp != 0:
-            # print("next coin list value ", coinsList[coinIdx + 1])
-            if temp < coinsList[coinIdx + 1]: # and temp != 0: # and coindIdx + 1 < len(coinsList) - 1:
+            if temp < coinsList[coinIdx + 1]:
                 count -= num
                 temp = total
-                # print("temp ", temp)
         total = temp
-        # print("total ", total)
-        coinIdx += 1
 
         if total == 0:
             return count
     return -1
-
-    # for c in sorted_c:
-    #     while (running - c >= 0):
-    #         running = running - c
-    #         num = num + 1
-
-    # if running != 0 and running - sorted_c[-1] < 0:
-    #     return -1
-    # return num
