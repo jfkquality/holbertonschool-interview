@@ -24,7 +24,8 @@ List *add_node_end(List **list, char *str)
 
 	node->str = str;
 
-	if (!head) {
+	if (!head)
+	{
 		node->prev = node;
 		node->next = node;
 		*list = node;
@@ -49,30 +50,4 @@ List *add_node_end(List **list, char *str)
 List *add_node_begin(List **list, char *str)
 {
 	return (*list = add_node_end(list, str));
-
-	/* List *node; */
-	/* List *head = *list; */
-
-	/* node = malloc(sizeof(List)); */
-	/* if (node == NULL) */
-	/* 	return (NULL); */
-
-	/* 	if (list == NULL || str == NULL) */
-	/* 	return (NULL); */
-
-	/* node->str = str; */
-
-	/* if (!head) { */
-	/* 	node->prev = node; */
-	/* 	node->next = node; */
-	/* 	*list = node; */
-	/* 	return (node); */
-	/* } */
-	/* node->prev = head->prev; */
-	/* node->prev->next = node; */
-	/* head->prev = node; */
-	/* node->next = head; */
-	/* *list = node; */
-
-	/* return (node); */
 }
