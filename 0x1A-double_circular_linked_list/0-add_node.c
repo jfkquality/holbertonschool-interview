@@ -12,17 +12,24 @@
 
 List *add_node_end(List **list, char *str)
 {
-	List *node;
+	List *node, *tail;
 	List *head = *list;
 
 	node = malloc(sizeof(List));
 	if (node == NULL)
 		return (NULL);
 
-	if (list == NULL || str == NULL)
+	if (!str ) {
+		free (node);
 		return (NULL);
+	}
 
 	node->str = str;
+	/* if (!node->str) */
+	/* { */
+	/* 	free (node); */
+	/* 	return (NULL); */
+	/* } */
 
 	if (!head)
 	{
@@ -31,8 +38,11 @@ List *add_node_end(List **list, char *str)
 		*list = node;
 		return (node);
 	}
-	node->prev = head->prev;
-	node->prev->next = node;
+	tail = head->prev; // From Danny.
+	node->prev = tail;
+	tail->next = node;
+	/* node->prev = head->prev; */
+	/* node->prev->next = node; */
 	head->prev = node;
 	node->next = head;
 
