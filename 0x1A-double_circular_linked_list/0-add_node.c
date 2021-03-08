@@ -25,7 +25,7 @@ List *add_node_end(List **list, char *str)
 		return (NULL);
 	}
 
-	node->str = str;
+	node->str = strdup(str);
 	/* if (!node->str) */
 	/* { */
 	/* free (node); */
