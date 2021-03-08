@@ -15,15 +15,15 @@ List *add_node_end(List **list, char *str)
 	List *node; /* , *tail; */
 	List *head = *list;
 
+	if (!list || !str)
+	{
+		/* free(node); */
+		return (NULL);
+	}
+
 	node = malloc(sizeof(List));
 	if (node == NULL)
 		return (NULL);
-
-	if (!str)
-	{
-		free(node);
-		return (NULL);
-	}
 
 	node->str = strdup(str);
 	/* if (!node->str) */
