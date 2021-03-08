@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "list.h"
 
 /**
@@ -25,7 +23,7 @@ List *add_node_end(List **list, char *str)
 	if (node == NULL)
 		return (NULL);
 
-	node->str = strdup(str);
+	node->str = (str);
 	/* if (!node->str) */
 	/* { */
 	/* free (node); */
