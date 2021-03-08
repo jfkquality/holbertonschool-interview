@@ -19,16 +19,17 @@ List *add_node_end(List **list, char *str)
 	if (node == NULL)
 		return (NULL);
 
-	if (!str ) {
-		free (node);
+	if (!str)
+	{
+		free(node);
 		return (NULL);
 	}
 
 	node->str = str;
 	/* if (!node->str) */
 	/* { */
-	/* 	free (node); */
-	/* 	return (NULL); */
+	/* free (node); */
+	/* return (NULL); */
 	/* } */
 
 	if (!head)
@@ -38,7 +39,7 @@ List *add_node_end(List **list, char *str)
 		*list = node;
 		return (node);
 	}
-	tail = head->prev; // From Danny.
+	tail = head->prev; /* From Danny. */
 	node->prev = tail;
 	tail->next = node;
 	/* node->prev = head->prev; */
