@@ -13,7 +13,7 @@ List *add_node_end(List **list, char *str)
 	List *node; /* , *tail; */
 	List *head = *list;
 
-	if (!list || !str)
+	if (!str)
 	{
 		/* free(node); */
 		return (NULL);
@@ -23,7 +23,7 @@ List *add_node_end(List **list, char *str)
 	if (node == NULL)
 		return (NULL);
 
-	node->str = (str);
+	node->str = strdup(str);
 	/* if (!node->str) */
 	/* { */
 	/* free (node); */
