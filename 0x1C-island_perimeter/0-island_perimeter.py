@@ -4,7 +4,7 @@
 """
 
 
-def numofneighbour(mat, row, col, rows, cols):
+def numofneighbors(mat, row, col, rows, cols):
     """ Find the number of covered side for mat[i][j]."""
 
     count = 0
@@ -32,27 +32,20 @@ def island_perimeter(grid):
     """ Returns sum of perimeter of shapes formed with 1's. """
 
     perimeter = 0
+    land = grid
 
-    rows = len(grid)
-    cols = len(grid[0])
+    rows = len(land)
+    cols = len(land[0])
 
     # Traversing the matrix and finding ones to
     # calculate their contribution.
     for row in range(0, rows):
         for col in range(0, cols):
-            if (grid[row][col]):
-                perimeter += (4 - numofneighbour(grid, row, col, rows, cols))
+            if (land[row][col]):
+                perimeter += (4 - numofneighbors(land, row, col, rows, cols))
 
     return perimeter
 
-
-# # Driver Code
-# mat = [ [0, 1, 0, 0, 0],
-#         [1, 1, 1, 0, 0],
-#         [1, 0, 0, 0, 0] ]
-
-# print(findperimeter(mat), end="\n");
-# print(island_perimeter(mat), end="\n");
 
 # def island_perimeter(grid):
 
