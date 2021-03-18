@@ -4,25 +4,25 @@
 """
 
 
-def numofneighbour(mat, i, j, row, col):
+def numofneighbour(mat, row, col, rows, cols):
     """ Find the number of covered side for mat[i][j]."""
 
     count = 0
 
     # UP
-    if (i > 0 and mat[i - 1][j]):
+    if (row > 0 and mat[row - 1][col]):
         count += 1
 
     # LEFT
-    if (j > 0 and mat[i][j - 1]):
+    if (col > 0 and mat[row][col - 1]):
         count += 1
 
     # DOWN
-    if (i < row - 1 and mat[i + 1][j]):
+    if (row < rows - 1 and mat[row + 1][col]):
         count += 1
 
     # RIGHT
-    if (j < col-1 and mat[i][j + 1]):
+    if (col < cols - 1 and mat[row][col + 1]):
         count += 1
 
     return count
@@ -33,15 +33,15 @@ def island_perimeter(grid):
 
     perimeter = 0
 
-    row = len(grid)
-    col = len(grid[0])
+    rows = len(grid)
+    cols = len(grid[0])
 
     # Traversing the matrix and finding ones to
     # calculate their contribution.
-    for i in range(0, row):
-        for j in range(0, col):
-            if (grid[i][j]):
-                perimeter += (4 - numofneighbour(grid, i, j, row, col))
+    for row in range(0, rows):
+        for col in range(0, cols):
+            if (grid[row][col]):
+                perimeter += (4 - numofneighbour(grid, row, col, rows, cols))
 
     return perimeter
 
