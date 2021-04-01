@@ -34,5 +34,49 @@ int main(void)
 	printf("%d\n", r);
 	r = wildcmp("abc", "*b");
 	printf("%d\n", r);
+
+	printf("------------------------\n");
+
+	r = wildcmp("maintain", "m*a*i*n*");
+	printf("%d\n", r);
+	r = wildcmp("maintain", "m*n");
+	printf("%d\n", r);
+	r = wildcmp("maintain", "m*n*n");
+	printf("%d\n", r);
+	r = wildcmp("main", "m*n");
+	printf("%d\n", r);
+	r = wildcmp("main", "m*n*n"); /* Should NOT match. */
+	printf("%d\n", r);
+	r = wildcmp("m1aintain", "m*a*i*n*");
+	printf("%d\n", r);
+	r = wildcmp("maintain", "m1*a*i*n*"); /* Should NOT match. */
+	printf("%d\n", r);
+
+	printf("------------------------\n");
+
+	r = wildcmp("", "*"); /* Should match. */
+	printf("%d\n", r);
+	r = wildcmp(" ", "*"); /* Should match. */
+	printf("%d\n", r);
+	r = wildcmp(" ", "*"); /* Should match. */
+	printf("%d\n", r);
+	r = wildcmp("", ""); /* Should match. */
+	printf("%d\n", r);
+	r = wildcmp("", " "); /* Should NOT match. */
+	printf("%d\n", r);
+	r = wildcmp(" ", ""); /* Should NOT match. */
+	printf("%d\n", r);
+	r = wildcmp(" ", " "); /* Should match. */
+	printf("%d\n", r);
+	r = wildcmp("", " *"); /* Should NOT match. */
+	printf("%d\n", r);
+
+	printf("------------------------\n");
+
+	r = wildcmp("main", "main"); /* Should match. */
+	printf("%d\n", r);
+	r = wildcmp("main", "MAIN"); /* Should match. */
+	printf("%d\n", r);
+
 	return (0);
 }
