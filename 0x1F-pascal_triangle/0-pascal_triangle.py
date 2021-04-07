@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-0. Pascal's Triangle
+0. Pascals Triangle
 """
 
 
 def pascal_triangle(n):
     """
-    Create Pascal's Triangle
+    Create Pascals Triangle
     """
 
     if n <= 0:
