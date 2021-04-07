@@ -9,6 +9,8 @@ def pascal_triangle(n):
     Create Pascal's Triangle
     """
 
+    if n <= 0:
+        return []
     triangle = [[1]]
     row = 1
     while row < n:
