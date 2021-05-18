@@ -1,116 +1,58 @@
+#include "sort.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include "sort.h"
-
 
 /**
- * TopDownMergeSort - Top down merge sort
- * @A: int array A
- * @B: int array B
- * @n: size of array
- *
- * Return: nothing
- *
- **/
-
-void TopDownMergeSort(int A[], int B[], size_t n)
+ * merge - Merge left and right sub-arrays
+ * @arr: Full array
+ * @left: Left sub-array
+ * @right: Right sub-array
+ * @size: size of full array
+ */
+void merge(int *arr, int *left, int *right, size_t size)
 {
-	/* Array A[] has the items to sort; array B[] is a work array. */
-	CopyArray(A, 0, n, B); /* one time copy of A[] to B[] */
-	TopDownSplitMerge(B, 0, n, A); /* sort data from B[] into A[] */
-}
+	int i = 0, j = 0, k = 0;
+	int mid = size / 2, end = size - mid;
 
-/**
- * TopDownSplitMerge - Top down split merge
- * @A: int array A
- * @B: int array B
- * @iBegin: Beginning size of array
- * @iEnd: Ending size of array
- *
- * Return: nothing
- **/
+	printf("Merging...\n[left]: ");
+	print_array(left, mid);
+	printf("[right]: ");
+	print_array(right, end);
 
-void TopDownSplitMerge(int B[], size_t iBegin, size_t iEnd, int A[])
-{
-	/* Sort the given run of array A[] using array B[] as a source. */
-	/* iBegin is inclusive; iEnd is exclusive (A[iEnd] is not in the set). */
-
-	if (iEnd - iBegin <= 1) /* if run size == 1 */
-		return; /* consider it sorted */
-
-	/* split the run longer than 1 item into halves */
-	size_t iMiddle = (iEnd + iBegin) / 2; /* iMiddle = mid point */
-
-	/* recursively sort both runs from array A[] into B[] */
-	printf("Merging...\n");
-	TopDownSplitMerge(A, iBegin, iMiddle, B); /* sort the left  run */
-	printf("%d\n", A[iBegin]);
-	TopDownSplitMerge(A, iMiddle, iEnd, B);  /* sort the right run */
-
-	/* merge the resulting runs from array B[] into A[] */
-	TopDownMerge(B, iBegin, iMiddle, iEnd, A);
-}
-
-/**
- * TopDownMerge - Top down merge
- * @A: array A
- * @B: array B
- * @iBegin: Beginning size of array
- * @iMiddle: Middle size of array
- * @iEnd: Ending size of array
- *
- * Return: nothing
- **/
-
-/* Left source half is A[ iBegin:iMiddle-1]. */
-/* Right source half is A[iMiddle:iEnd-1   ]. */
-/* Result is            B[ iBegin:iEnd-1   ]. */
-void TopDownMerge(int A[], size_t iBegin, size_t iMiddle, size_t iEnd, int B[])
-{
-	size_t i = iBegin, j = iMiddle;
-
-	/* While there are elements in the left or right runs... */
-	for (size_t k = iBegin; k < iEnd; k++)
+	while (i < mid && j < end)
 	{
-		/* If left run head exists and is <= existing right run head. */
-		if (i < iMiddle && (j >= iEnd || A[i] <= A[j]))
-		{
-			B[k] = A[i];
-			i = i + 1;
-		} else
-		{
-			B[k] = A[j];
-			j = j + 1;
-		}
+		/* printf("L %d, R %d \n", L[i], R[j]); */
+		if (left[i] < right[j])
+			arr[k++] = left[i++];
+		else
+			arr[k++] = right[j++];
 	}
+	while (i < mid)
+		arr[k++] = left[i++];
+	while (j < end)
+		arr[k++] = right[j++];
+	printf("[Done]: ");
+	print_array(arr, size);
 }
 
 /**
- * CopyArray - Copy array
- * @A: int array A
- * @B: int array B
- * @iBegin: Beginning size of array
- * @iEnd: Ending size of array
- *
- * Return: nothing
- **/
-
-void CopyArray(int A[], size_t iBegin, size_t iEnd, int B[])
-{
-	for (size_t k = iBegin; k < iEnd; k++)
-		B[k] = A[k];
-}
-
-/**
- * merge_sort - merge sort function
- * @array: int array
+ * merge_sort - Sort array using top-down merge sort
+ * @array: Input array
  * @size: Size of array
- *
- * Return: nothing
- **/
+ */
 void merge_sort(int *array, size_t size)
 {
-	int array2[size];
+	int i, mid = size / 2, left[size], right[size];
 
-	TopDownMergeSort(array, array2, size);
+	if (!array || size < 2)
+		return;
+
+	for (i = 0; i < mid; i++)
+		left[i] = array[i];
+	for (i = mid; i < (int)size; i++)
+		right[i - mid] = array[i];
+
+	merge_sort(left, mid);
+	merge_sort(right, size - mid);
+	merge(array, left, right, size);
 }
