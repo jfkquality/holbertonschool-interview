@@ -1,36 +1,37 @@
 #include "sort.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 /**
  * merge - Merge left and right sub-arrays
- * @arr: Full array
- * @left: Left sub-array
- * @right: Right sub-array
+ * @A: Full array
+ * @L: Left sub-array
+ * @R: Right sub-array
  * @size: size of full array
  */
-void merge(int *arr, int *left, int *right, size_t size)
+void merge(int *A, int *L, int *R, size_t size)
 {
 	int i = 0, j = 0, k = 0;
-	int mid = size / 2, end = size - mid;
+	int l = size / 2, r = size - l;
 
 	printf("Merging...\n[left]: ");
-	print_array(left, mid);
+	print_array(L, l);
 	printf("[right]: ");
-	print_array(right, end);
+	print_array(R, r);
 
-	while (i < mid && j < end)
+	while (i < l && j < r)
 	{
-		/* printf("L %d, R %d \n", L[i], R[j]); */
-		if (left[i] < right[j])
-			arr[k++] = left[i++];
+		if (L[i] < R[j])
+			A[k++] = L[i++];
 		else
-			arr[k++] = right[j++];
+			A[k++] = R[j++];
 	}
-	while (i < mid)
-		arr[k++] = left[i++];
-	while (j < end)
-		arr[k++] = right[j++];
+	while (i < l)
+		A[k++] = L[i++];
+	while (j < r)
+		A[k++] = R[j++];
 	printf("[Done]: ");
-	print_array(arr, size);
+	print_array(A, size);
 }
 
 /**
@@ -40,7 +41,7 @@ void merge(int *arr, int *left, int *right, size_t size)
  */
 void merge_sort(int *array, size_t size)
 {
-	int i, mid = size / 2, left[size], right[size];
+	int i, mid = size / 2, left[100], right[100];
 
 	if (!array || size < 2)
 		return;
