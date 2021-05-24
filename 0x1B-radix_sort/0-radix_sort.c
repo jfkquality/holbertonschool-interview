@@ -41,6 +41,9 @@ void radix_sort(int *array, size_t size)
 	int *lsd, max_digits = 0;
 	int i = -1, j = -1, k, l, tens, digits, size2, num;
 
+	if (!array || size == 0)
+		return;
+
 	lsd = malloc(size);
 	if (!lsd)
 		return;
@@ -122,4 +125,5 @@ void radix_sort(int *array, size_t size)
 		}
 		print_array(array, size);
 	}
+	/* free(lsd); */
 }
