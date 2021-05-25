@@ -1,115 +1,59 @@
 #include "binary_trees.h"
 
 
-/* UTILITY FUNCTIONS TO TEST isBalanced() FUNCTION */
-
 /**
- * max -  returns maximum of two integers
- *
- * @a: first int
- * @b: second int
- *
- * Return: max int
- **/
-int max(int a, int b)
-{
-	return ((a >= b) ? a : b);
-}
-
-/**
- * height - Compute the "height" of a tree.
- *
- * @node: root node of tree
- *
+ * binary_tree_height - get height from binary tree
+ * @tree: tree to search
  * Return: height
- **/
-int height(const binary_tree_t *node)
-{
-	/* base case tree is empty */
-	if (node == NULL)
-		return (0);
-
-	/*
-	 *  If tree is not empty then height = 1 + max of left
-	 *  height and right heights
-	*/
-	return (1 + max(height(node->left), height(node->right)));
-}
-
-/**
- * isBST - Check if tree is a Binary Search Tree
- *
- * @root: binary tree
- * @min: int min
- * @max: int max
- *
- * Return: o or 1
- **/
-int isBST(const binary_tree_t *root, int min, int max)
-{
-
-	if (root == NULL)
-		return (1);
-
-	if (root->n < min)
-		return (0);
-
-	if (root->n > max)
-		return (0);
-
-	return (isBST(root->right, root->n, max) &&
-		isBST(root->left, min, root->n));
-}
-
-/**
- * is_avl - Returns true if binary tree is an AVL Tee/
- *
- * @tree2: root node of tree
- *
- * Return: 1/True or 0/False
  */
-int is_avl(const binary_tree_t *tree2)
+size_t binary_tree_height(const binary_tree_t *tree)
 {
-	int lh; /* for height of left subtree */
-	int rh; /* for height of right subtree */
-	/* int min = INT_MIN; */
-	/* int max = INT_MAX; */
-
-	/* If tree is empty then return true */
-	if (tree2 == NULL)
-		return (1);
-
-	/* Get the height of left and right sub trees */
-	lh = height(tree2->left);
-	rh = height(tree2->right);
-
-	if ((abs(lh - rh) <= 1 &&
-	     (is_avl(tree2->left) &&
-	      is_avl(tree2->right))))  /* && */
-	    /* isBST(tree2, min, max)) */
-	    /* (isBST(tree->left) && isBST(tree->right))) */
-		return (1);
-
-	/* If we reach here then tree is not height-balanced */
-	return (0);
-}
-
-/**
- * binary_tree_is_avl - Returns true if binary tree is an AVL Tee/
- *
- * @tree: root node of tree
- *
- * Return: 1/True or 0/False
- */
-int binary_tree_is_avl(const binary_tree_t *tree)
-{
-	int min = INT_MIN;
-	int max = INT_MAX;
+	size_t l = 0, r = 0;
 
 	if (tree == NULL)
 		return (0);
-	if (!isBST(tree, min, max))
-		return (0);
+	l = tree->left ? 1 + binary_tree_height(tree->left) : 1;
+	r = tree->right ? 1 + binary_tree_height(tree->right) : 1;
+	return ((l > r) ? l : r);
+}
 
-	return (is_avl(tree));
+/**
+ * check_avl_tree - Checks if tree is AVL tree
+ * @tree: tree to check
+ * @high: higher node
+ * @low: lower node
+ * Return: 1 if True, 0 if not AVL tree
+ */
+int check_avl_tree(const binary_tree_t *tree, int low, int high)
+{
+	size_t height_l, height_r, balancer;
+
+	if (tree)
+	{
+		if (tree->n > high || tree->n < low)
+			return (0);
+		height_l = binary_tree_height(tree->left);
+		height_r = binary_tree_height(tree->right);
+		if (height_l > height_r)
+			balancer =  height_l - height_r;
+		else
+			balancer = height_r - height_l;
+		if (balancer > 1)
+			return (0);
+		return (check_avl_tree(tree->left, low, tree->n - 1) &&
+			check_avl_tree(tree->right, tree->n + 1, high));
+	}
+	return (1);
+}
+
+/**
+ * binary_tree_is_avl - checks if it is a valid AVL tree
+ * @tree: node of binary tree
+ * Return: 1 if true, 0 if not avl tree
+ */
+int binary_tree_is_avl(const binary_tree_t *tree)
+{
+	if (!tree)
+		return (0);
+	return (check_avl_tree(tree, INT_MIN, INT_MAX));
 }
