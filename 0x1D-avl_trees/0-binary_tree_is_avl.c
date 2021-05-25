@@ -82,7 +82,7 @@ int binary_tree_is_avl(const binary_tree_t *tree)
 
 	/* If tree is empty then return true */
 	if (tree == NULL)
-		return (1);
+		return (0);
 
 	/* Get the height of left and right sub trees */
 	lh = height(tree->left);
