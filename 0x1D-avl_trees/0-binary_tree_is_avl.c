@@ -72,8 +72,8 @@ int is_avl(const binary_tree_t *tree2)
 {
 	int lh; /* for height of left subtree */
 	int rh; /* for height of right subtree */
-	int min = INT_MIN;
-	int max = INT_MAX;
+	/* int min = INT_MIN; */
+	/* int max = INT_MAX; */
 
 	/* If tree is empty then return true */
 	if (tree2 == NULL)
@@ -85,8 +85,8 @@ int is_avl(const binary_tree_t *tree2)
 
 	if ((abs(lh - rh) <= 1 &&
 	     (is_avl(tree2->left) &&
-	      is_avl(tree2->right))) &&
-	    isBST(tree2, min, max))
+	      is_avl(tree2->right))))  /* && */
+	    /* isBST(tree2, min, max)) */
 	    /* (isBST(tree->left) && isBST(tree->right))) */
 		return (1);
 
@@ -103,7 +103,13 @@ int is_avl(const binary_tree_t *tree2)
  */
 int binary_tree_is_avl(const binary_tree_t *tree)
 {
+	int min = INT_MIN;
+	int max = INT_MAX;
+
 	if (tree == NULL)
 		return (0);
+	if (!isBST(tree, min, max))
+		return (0);
+
 	return (is_avl(tree));
 }
