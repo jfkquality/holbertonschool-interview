@@ -37,7 +37,7 @@ int height(const binary_tree_t *node)
 }
 
 /**
- * isBST - Check if tree is a Binary Search Tree
+ * isBST - Check if tree is a Binary Search Tree. NOT USED. ALL IN is_avl().
  *
  * @root: binary tree
  * @min: int min
