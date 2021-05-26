@@ -89,7 +89,8 @@ int is_avl(const binary_tree_t *tree, int min, int max)
 	     (is_avl(tree->left, min, max) &&
 	      is_avl(tree->right, min, max))) &&
 	    /* isBST(tree2, min, max)) */
-	    (isBST(tree->left, min, max) && isBST(tree->right, min, max)))
+	    (isBST(tree->left, min, tree->n - 1) &&
+	     isBST(tree->right, tree->n + 1, max)))
 		return (1);
 
 	/* If we reach here then tree is not height-balanced */
@@ -109,8 +110,6 @@ int binary_tree_is_avl(const binary_tree_t *tree)
 	int max = INT_MAX;
 
 	if (tree == NULL)
-		return (0);
-	if (!isBST(tree, min, max))
 		return (0);
 
 	return (is_avl(tree, min, max));
