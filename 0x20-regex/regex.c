@@ -10,17 +10,14 @@
  **/
 int regex_match(char const *str, char const *pattern)
 {
-		int i = 0;
+	int i = 0;
 
 	if (!strcmp(str, pattern))
 		return (1);
-
-	if (!strchr(pattern, '.') && !strchr(pattern, '*'))
-		return (0);
-
 	if (str[0] == '\0' && pattern[1] != '*' && strlen(pattern) != 2)
 		return (0);
-
+	if (!strchr(pattern, '.') && !strchr(pattern, '*'))
+		return (0);
 	if (strchr(pattern, '.') && !strchr(pattern, '*'))
 	{
 		while (str[i])
@@ -34,7 +31,6 @@ int regex_match(char const *str, char const *pattern)
 	}
 	if (pattern[0] == '.' && pattern[1] == '*' && pattern[2] == '\0')
 		return (1);
-
 	if (strchr(pattern, '*') && !strchr(pattern, '.'))
 	{
 		if (pattern[1] == '*' && pattern[2] == '\0')
