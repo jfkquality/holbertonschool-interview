@@ -13,7 +13,7 @@
  **/
 int max(int a, int b)
 {
-        return ((a >= b) ? a : b);
+	return ((a >= b) ? a : b);
 }
 
 /**
@@ -25,15 +25,15 @@ int max(int a, int b)
  **/
 int height(const binary_tree_t *node)
 {
-        /* base case tree is empty */
-        if (node == NULL)
-                return (0);
+	/* base case tree is empty */
+	if (node == NULL)
+		return (0);
 
-        /*
-         *  If tree is not empty then height = 1 + max of left
-         *  height and right heights
-        */
-        return (1 + max(height(node->left), height(node->right)));
+	/*
+	 *  If tree is not empty then height = 1 + max of left
+	 *  height and right heights
+	 */
+	return (1 + max(height(node->left), height(node->right)));
 }
 
 /**
@@ -48,17 +48,17 @@ int height(const binary_tree_t *node)
 int isBST(const binary_tree_t *root, int min, int max)
 {
 
-        if (root == NULL)
-                return (1);
+	if (root == NULL)
+		return (1);
 
-        if (root->n < min)
-                return (0);
+	if (root->n < min)
+		return (0);
 
-        if (root->n > max)
-                return (0);
+	if (root->n > max)
+		return (0);
 
-        return (isBST(root->right, root->n, max) &&
-                isBST(root->left, min, root->n));
+	return (isBST(root->right, root->n, max) &&
+		isBST(root->left, min, root->n));
 }
 
 /**
@@ -72,28 +72,26 @@ int isBST(const binary_tree_t *root, int min, int max)
  */
 int is_avl(const binary_tree_t *tree, int min, int max)
 {
-        int lh; /* for height of left subtree */
-        int rh; /* for height of right subtree */
-        /* int min = INT_MIN; */
-        /* int max = INT_MAX; */
+	int lh; /* for height of left subtree */
+	int rh; /* for height of right subtree */
 
-        /* If tree is empty then return true */
-        if (tree == NULL)
-                return (1);
+	/* If tree is empty then return true */
+	if (tree == NULL)
+		return (1);
 
-        /* Get the height of left and right sub trees */
-        lh = height(tree->left);
-        rh = height(tree->right);
+	/* Get the height of left and right sub trees */
+	lh = height(tree->left);
+	rh = height(tree->right);
 
-        if ((abs(lh - rh) <= 1 &&
-             (is_avl(tree->left, min, max) &&
-              is_avl(tree->right, min, max))) &&
-            (isBST(tree->left, min, tree->n - 1) &&
-             isBST(tree->right, tree->n + 1, max)))
-                return (1);
+	if ((abs(lh - rh) <= 1 &&
+	     (is_avl(tree->left, min, max) &&
+	      is_avl(tree->right, min, max))) &&
+	    (isBST(tree->left, min, tree->n - 1) &&
+	     isBST(tree->right, tree->n + 1, max)))
+		return (1);
 
-        /* If we reach here then tree is not height-balanced */
-        return (0);
+	/* If we reach here then tree is not height-balanced */
+	return (0);
 }
 
 /**
@@ -105,11 +103,11 @@ int is_avl(const binary_tree_t *tree, int min, int max)
  */
 int binary_tree_is_avl(const binary_tree_t *tree)
 {
-        int min = INT_MIN;
-        int max = INT_MAX;
+	int min = INT_MIN;
+	int max = INT_MAX;
 
-        if (tree == NULL)
-                return (0);
+	if (tree == NULL)
+		return (0);
 
-        return (is_avl(tree, min, max));
+	return (is_avl(tree, min, max));
 }
